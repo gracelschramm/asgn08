@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--	Author: 
-		Date:	
+<!--	Author: Grace Schramm
+		Date:	11/01/2020
 		File:	raises.php
 		Purpose:MySQL Exercise
 -->
@@ -14,10 +14,7 @@
 <body>
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
+include_once('../asgn08/database/connection.php');
 
 $connect=mysqli_connect($server, $user, $pw, $db);
 
@@ -27,7 +24,8 @@ if( !$connect)
 	using user name $user (".mysqli_connect_errno().
 	", ".mysqli_connect_error().")");
 }
-$userQuery = ""; // ADD THE QUERY
+  
+$userQuery = "SELECT empID, hourlyWage FROM personnel WHERE hourlyWage < '10.00'"; // ADD THE QUERY
 
 $result = mysqli_query($connect, $userQuery);
 
@@ -45,7 +43,10 @@ else
 { 
 	print("<h1>LIST OF EMPLOYEES WHO NEED A RAISE</h1>");
 
-	// ADD CODE HERE
+	while($row = mysqli_fetch_assoc($result))
+  {
+    print ("Employee ".$row['empID']. " needs a raise! ") ;
+  }// ADD CODE HERE
 
 }
 

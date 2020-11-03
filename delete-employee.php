@@ -15,10 +15,7 @@
 
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
+include_once('../asgn08/database/connection.php');
 
 $connect=mysqli_connect($server, $user, $pw, $db);
 
@@ -29,7 +26,7 @@ if( !$connect)
 	", ".mysqli_connect_error().")");
 }
 
-$empID = '99999'; /// CHANGE THIS TO THE ID OF THE RECORD YOU WISH TO DELETE
+$empID = '0'; /// CHANGE THIS TO THE ID OF THE RECORD YOU WISH TO DELETE
 
 $userQuery = "DELETE FROM personnel WHERE empID='$empID'";
 

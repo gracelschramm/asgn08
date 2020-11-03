@@ -15,11 +15,8 @@
 
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
-
+include_once('../asgn08/database/connection.php');
+  
 $connect=mysqli_connect($server, $user, $pw, $db);
 
 if( !$connect) 
@@ -32,7 +29,7 @@ $empID = $_POST['empID'];
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 
-$userQuery = ""; // ADD THE QUERY
+$userQuery = "INSERT INTO personnel (empID, firstName, lastName, jobTitle, hourlyWage) VALUES ('$empID', '$firstName', '$lastName', 'Sales', '8.25')"; // ADD THE QUERY
 
 $result = mysqli_query($connect, $userQuery);
 
@@ -49,7 +46,7 @@ else
 			<tr><td>EMPLOYEE ID</td><td>$empID</td></tr>
 			<tr><td>FIRST NAME</td><td>$firstName</td></tr>
 			<tr><td>LAST NAME</td><td>$lastName</td></tr>		
-			<tr><td>JOB TITLE</td><td>sales</td></tr>
+			<tr><td>JOB TITLE</td><td>Sales</td></tr>
 			<tr><td>HOURLY WAGE</td><td>8.25</td></tr>
 			</table>");
 }
