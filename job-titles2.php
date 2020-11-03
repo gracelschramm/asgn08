@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!--	Author: 
-		Date:	
+<!--	Author: Grace Schramm
+		Date:	11/01/2020
 		File:	job-titles2.php
 		Purpose:MySQL Exercise
 -->
@@ -15,10 +15,7 @@
 
 <?php
 
-$server = "localhost";
-$user = "wbip";
-$pw = "wbip123";
-$db = "test";
+include_once('../asgn08/database/connection.php');
 
 $connect=mysqli_connect($server, $user, $pw, $db);
 
@@ -31,7 +28,7 @@ if( !$connect)
 
 $jobTitle = $_POST['jobTitle'];
 
-$userQuery = " ";  // ADD THE QUERY
+$userQuery = "SELECT jobTitle, firstName, lastName FROM personnel WHERE jobTitle='$jobTitle'";  // ADD THE QUERY
 
 $result = mysqli_query($connect, $userQuery);
 
@@ -51,7 +48,10 @@ else
 	print("<table border = \"1\">");
 	print("<tr><th>FIRST NAME</th><th>LAST NAME</th></tr>");
 		 
-	// ADD CODE HERE
+	while($row = mysqli_fetch_assoc($result))
+  {
+    print ("<tr><td>".$row['firstName']. "</td><td>".$row['lastName']."</td></tr>");
+  }
 	
 	print ("</table>");
 }
